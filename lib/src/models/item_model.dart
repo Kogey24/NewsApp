@@ -27,4 +27,19 @@ class ItemModel {
       score = parsedJson['score'],
       title = parsedJson['title'],
       descendants = parsedJson['descendants'];
+
+  ItemModel.fromDb(Map<String, dynamic> parsedDb)
+    : id = parsedDb['id'],
+      deleted = parsedDb['deleted'] == 1,
+      type = parsedDb['type'],
+      by = parsedDb['by'],
+      time = parsedDb['time'],
+      text = parsedDb['text'],
+      dead = parsedDb['dead'] == 1,
+      parent = parsedDb['parent'],
+      kids = parsedDb['kids'],
+      url = parsedDb['url'],
+      score = parsedDb['score'],
+      title = parsedDb['title'],
+      descendants = parsedDb['descendants'];
 }

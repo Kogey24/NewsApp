@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class ItemModel {
   final int id;
   final bool deleted;
@@ -37,9 +39,27 @@ class ItemModel {
       text = parsedDb['text'],
       dead = parsedDb['dead'] == 1,
       parent = parsedDb['parent'],
-      kids = parsedDb['kids'],
+      kids = jsonDecode(parsedDb['kids']),
       url = parsedDb['url'],
       score = parsedDb['score'],
       title = parsedDb['title'],
       descendants = parsedDb['descendants'];
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'deleted': deleted ? 1 : 0,
+      'type': type,
+      'by': by,
+      'time': time,
+      'text': text,
+      'dead': dead ? 1 : 0,
+      'parent': parent,
+      'kids': jsonEncode(kids),
+      'url': url,
+      'score': score,
+      'title': title,
+      'descendants': descendants,
+    };
+  }
 }

@@ -57,7 +57,7 @@ class NewsDbProvider {
     return null;
   }
 
-  addItem(ItemModel item) {
+  Future<int> addItem(ItemModel item) {
     return db!.insert('Items', item.toMap());
   }
 }

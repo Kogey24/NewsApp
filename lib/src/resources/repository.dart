@@ -11,7 +11,7 @@ class Repository {
     return newsApiProvider.fetchTopIds();
   }
 
-  Future<ItemModel?> fetchItem(int id) async {
+  Future<ItemModel> fetchItem(int id) async {
     // Try to get the item from the database
     final item = await newsDbProvider.fetchItem(id);
     if (item != null) {

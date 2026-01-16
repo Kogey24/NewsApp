@@ -9,6 +9,7 @@ final _root = 'https://hacker-news.firebaseio.com/v0';
 class NewsApiProvider implements Source {
   Client client = Client();
 
+  @override
   Future<List<int>> fetchTopIds() async {
     final response = await client.get(
       Uri.parse("$_root/topstories.json?print=pretty"),
@@ -18,6 +19,7 @@ class NewsApiProvider implements Source {
     return ids.cast<int>();
   }
 
+  @override
   Future<ItemModel> fetchItem(int id) async {
     final response = await client.get(
       Uri.parse('$_root/item/$id.json?print=pretty'),

@@ -13,6 +13,7 @@ class NewsDbProvider implements Source, Cache {
     init();
   }
 
+  @override
   Future<List<int>> fetchTopIds() {
     throw UnimplementedError();
   }
@@ -47,6 +48,7 @@ class NewsDbProvider implements Source, Cache {
     );
   }
 
+  @override
   Future<ItemModel?> fetchItem(int id) async {
     final maps = await db!.query(
       'Items',
@@ -55,13 +57,14 @@ class NewsDbProvider implements Source, Cache {
       whereArgs: [id],
     );
 
-    if (maps.length > 0) {
+    if (maps.isNotEmpty) {
       return ItemModel.fromDb(maps.first);
     }
 
     return null;
   }
 
+  @override
   Future<int> addItem(ItemModel item) {
     return db!.insert('Items', item.toMap());
   }

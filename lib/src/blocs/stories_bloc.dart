@@ -7,7 +7,14 @@ class StoriesBloc {
   final _repository = Repository();
 
   // Getters to Streams
+  //Observables are now deprecated in the mordern dart
+  //Use Stream instead of Observable
   Stream<List<int>> get topIds => _topIds.stream;
+
+  fetchTopIds() async {
+    final ids = await _repository.fetchTopIds();
+    _topIds.sink.add(ids);
+  }
 
   dispose() {
     _topIds.close();
